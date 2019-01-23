@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}YSearch{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="/css/tailwind.min.css">
     </head>
-    <body>
-        <h1>{% block name %}YSearch{% endblock %}</h1>
-        <h2>{% block motto %}putting You back in Youtube{% endblock %}</h2>
-        {% block body %}{% endblock %}
+    <body class="flex flex-col h-full bg-grey-lighter">
+    <nav class="bg-red-darker">
+        <div class="container mx-auto p-4 text-white no-underline">
+            <a class="no-underline" href="/"><h1 class="text-white hover:text-blue-dark hover:underline">{% block name %}YSearch{% endblock %}</h1></a>
+            <span>{% block motto %}putting You back in Youtube{% endblock %}</span>
+        </div>
+    </nav>
+<main class="container mx-auto py-5 flex-1">
+        {% block body %}
+
+        {% endblock %}
+</main>
         {% block javascripts %}{% endblock %}
+        <footer class="w-full text-center border-t border-grey p-4 pin-b">
+            <p>For support:<a href="https://twitter.com/darkbelg">@Darkbelg</a></p>
+        </footer>
     </body>
 </html>

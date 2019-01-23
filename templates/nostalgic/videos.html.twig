@@ -1,0 +1,22 @@
+{% extends 'nostalgic/index.html.twig' %}
+{% block body %}
+    <ul class="list-reset">
+        {% for key,result in results %}
+            {% if result.items  %}
+                {% for item in result.items %}
+                    <li class="rounded overflow-hidden shadow-lg mb-8">
+                        <a href="https://www.youtube.com/watch?v={{ item.id.videoId }}" class="flex" >
+                            <div  class="w-1/4 p-2 pb-1"><img src="{{ item.snippet.thumbnails.medium.url }}" alt="{{ item.snippet.title}}"></div>
+                            <div  class="w-3/4 pl-3 pt-3 text-black"><h2>{{ item.snippet.title}}</h2><p>{{ key }}</p></div>
+                        </a>
+
+                    </li>
+                {% endfor %}
+            {% else  %}
+                <li class="rounded overflow-hidden shadow-lg mb-8">
+                No video found.
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

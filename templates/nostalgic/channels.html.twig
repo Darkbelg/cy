@@ -1,2 +1,13 @@
-<h1>{% block name %}YNostalgic{% endblock %}</h1>
-<h2>{% block motto %}putting You back in Youtube{% endblock %}</h2>
+{% extends 'nostalgic/index.html.twig' %}
+{% block body %}
+        <ul class="list-reset">
+        {% for result in results %}
+            <li>
+                <a href="nostalgic/channelId/{{ result.snippet.channelId }}">
+                    <img src="{{ result.snippet.thumbnails.default.url }}" alt=" {{ result.snippet.channelTitle }}">
+                    {{ result.snippet.channelTitle }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+{% endblock %}
