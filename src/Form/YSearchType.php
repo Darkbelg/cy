@@ -14,8 +14,8 @@ class YSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('channelId', TextType::class, array('label' => 'Name' , 'label_attr'=> array('class'=>'font-bold py-3 px-4 rounded')))
-            ->add('search',SubmitType::class, array('label' => 'Search' , 'attr'=> array('class'=>'bg-red hover:bg-red-dark text-white font-bold py-2 px-4 rounded')));
+            ->add('channelId', TextType::class, array('label' => 'Channel Name' , 'label_attr'=> array('class'=>'font-bold py-3 px-4 rounded')))
+            ->add('search',SubmitType::class, array('label' => 'Search' , 'attr'=> array('class'=>'bg-red hover:bg-red-dark text-white font-bold py-2 px-4 rounded m-2')));
     }
 
     public function configureOptions(OptionsResolver $resolver)
