@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use Google_Http_Batch;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,10 @@ class NostalgicController extends AbstractController
 
                 $service = new Google_Service_YouTube($client);
 
+                $client->setUseBatch(true);
+                $batch = new Google_Http_Batch($client,false,null,"batch/youtube/v3/");
+
+
                 $nostalgicDates = [];
                 $nostalgicYears= [2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008];
                 $today = date("m-d");
@@ -39,7 +44,7 @@ class NostalgicController extends AbstractController
                 $searchResults = [];
 
                 foreach ($nostalgicDates as $nostalgicDate){
-                    $searchResults[$nostalgicDate] = $searchService->listSearch('id,snippet', array(
+                    $request = $searchService->listSearch('id,snippet', array(
                         'maxResults' => '7',
                         'type' => 'video',
                         'channelId' => $channelId,
@@ -47,10 +52,13 @@ class NostalgicController extends AbstractController
                         'publishedBefore' => $nostalgicDate . "T23:59:59Z",
                         'publishedAfter' => $nostalgicDate . "T00:00:00Z",
                     ));
+                    $batch->add($request,$nostalgicDate);
                 }
+                $searchResults = $batch->execute();
 //                echo "<pre>";
 //                var_dump($searchResults);
 //                echo "</pre>";
+//                die();
                 return $this->render('nostalgic/videos.html.twig', array(
                     'results' => $searchResults,
                 ));
