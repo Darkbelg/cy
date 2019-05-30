@@ -1,7 +1,21 @@
 {% extends 'nostalgic/index.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div>
+            {{ form_start(form) }}
+
+        <div class="flex flex-row items-center">
+            <div class="flex-1 flex-initial">
+                {{ form_row(form.channel) }}
+            </div>
+            <div class="flex-1 flex-initial">
+                {{ form_row(form.period) }}
+            </div>
+            <div class="flex-1 flex-initial ml-5">
+                {{ form_row(form.search) }}
+            </div>
+        </div>
+
+            {{ form_end(form) }}
+    </div>
 {% endblock %}

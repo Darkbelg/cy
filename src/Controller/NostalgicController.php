@@ -14,12 +14,16 @@ use Google_Service_Exception;
 
 class NostalgicController extends AbstractController
 {
+
+    const HALF_WEEK = 3.5*24*60*60;
+    const HALF_DAY = 12*60*60;
+
     /**
-     * @Route("/nostalgic/channelId/{slug}", name="nostalgic_search")
+     * @Route("/nostalgic/channel/{slug}/period/{period}", name="nostalgic_search")
      */
-    public function search($slug)
+    public function search($slug,$period)
     {
-        $channelId = $slug;
+        $channel = $slug;
             // ... perform some action, such as saving the data to the database
             try{
                 $client = new Google_Client();
@@ -28,39 +32,54 @@ class NostalgicController extends AbstractController
 
                 $service = new Google_Service_YouTube($client);
 
+                $nostalgicDates = [];
+
+                $channelCreated = $service->channels->listChannels('snippet', array(
+                    'id' => $channel,
+                    'maxResults' => '1'
+                ));
+
+                $channelCreated = $channelCreated['items'][0]['snippet']['publishedAt'];
+
                 $client->setUseBatch(true);
                 $batch = new Google_Http_Batch($client,false,null,"batch/youtube/v3/");
 
 
-                $nostalgicDates = [];
-                $nostalgicYears= [2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008];
-                $today = date("m-d");
+                $nostalgicYears= [2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004];
+                $today = time();
+                if($period == "day"){
+                    $todayMorning = $today - 12*60*60;
+                    $todayEvening = $today + 12*60*60;
+                }else{
+                    $todayMorning = $today - 3.5*24*60*60;
+                    $todayEvening = $today + 3.5*24*60*60;
+                }
 
                 foreach ($nostalgicYears as $year ){
-                    $nostalgicDates[] = $year . "-" . $today ;
+                    $nostalgicDates[$year]['morning'] = $year . "-" . date("m-d\TH:i:s\Z",$todayMorning) ;
+                    $nostalgicDates[$year]['evening'] = $year . "-" . date("m-d\TH:i:s\Z",$todayEvening)  ;
                 }
                 $searchService = $service->search;
 
                 $searchResults = [];
 
-                foreach ($nostalgicDates as $nostalgicDate){
+                foreach ($nostalgicDates as $year => $nostalgicDate){
+                    if($channelCreated > $year) {
+                        continue;
+                    }
                     $request = $searchService->listSearch('id,snippet', array(
                         'maxResults' => '7',
                         'type' => 'video',
-                        'channelId' => $channelId,
+                        'channelId' => $channel,
                         'order' => 'date',
-                        'publishedBefore' => $nostalgicDate . "T23:59:59Z",
-                        'publishedAfter' => $nostalgicDate . "T00:00:00Z",
+                        'publishedBefore' => $nostalgicDate['evening'],
+                        'publishedAfter' => $nostalgicDate['morning'],
                     ));
-                    $batch->add($request,$nostalgicDate);
+                    $batch->add($request,$year);
                 }
                 $searchResults = $batch->execute();
-//                echo "<pre>";
-//                var_dump($searchResults);
-//                echo "</pre>";
-//                die();
                 return $this->render('nostalgic/videos.html.twig', array(
-                    'results' => $searchResults,
+                    'results' => $searchResults, 'channelCreated' =>$channelCreated
                 ));
 
             }catch(Google_Exception $ge){

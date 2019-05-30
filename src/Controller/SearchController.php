@@ -37,12 +37,14 @@ class SearchController extends AbstractController
                 $service = new Google_Service_YouTube($client);
 
                 $searchResults = $service->search->listSearch('id,snippet', array(
-                    'q' => $data->getChannelId(),
+                    'q' => $data->getChannel(),
                     'maxResults' => '10',
                     'type' => 'channel'
                 ));
+
                 return $this->render('nostalgic/channels.html.twig', array(
                     'results' => $searchResults,
+                    'period' => $data->getPeriod()
                 ));
 
             }catch(Google_Exception $ge){

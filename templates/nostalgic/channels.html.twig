@@ -1,13 +1,21 @@
 {% extends 'nostalgic/index.html.twig' %}
 {% block body %}
-        <ul class="list-reset">
+    <div class="flex flex-wrap bg-grey-lighter">
         {% for result in results %}
-            <li>
-                <a href="nostalgic/channelId/{{ result.snippet.channelId }}">
-                    <img src="{{ result.snippet.thumbnails.default.url }}" alt=" {{ result.snippet.channelTitle }}">
-                    {{ result.snippet.channelTitle }}
-                </a>
-            </li>
+            <div class="w-1/3 p-2">
+                <div class="text-grey-darker text-center bg-grey-light p-4">
+                    <a href="nostalgic/channel/{{ result.snippet.channelId }}/period/{{ period }}">
+                        <div><img src="{{ result.snippet.thumbnails.default.url }}"
+                                  alt=" {{ result.snippet.channelTitle }}"></div>
+                        <div>
+                            <p>
+                                {{ result.snippet.channelTitle }}
+                            </p>
+                            <p>Member since {{ result.snippet.publishedAt |date("d F y") }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         {% endfor %}
-        </ul>
+    </div>
 {% endblock %}

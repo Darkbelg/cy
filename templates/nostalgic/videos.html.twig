@@ -5,18 +5,22 @@
             {% if result.items  %}
                 {% for item in result.items %}
                     <li class="rounded overflow-hidden shadow-lg mb-8">
-                        <a href="https://www.youtube.com/watch?v={{ item.id.videoId }}" class="flex" >
-                            <div  class="w-1/4 p-2 pb-1"><img src="{{ item.snippet.thumbnails.medium.url }}" alt="{{ item.snippet.title}}"></div>
-                            <div  class="w-3/4 pl-3 pt-3 text-black"><h2>{{ item.snippet.title}}</h2><p>{{ key }}</p></div>
+                        <a href="https://www.youtube.com/watch?v={{ item.id.videoId }}" class="flex no-underline hover:underline hover:text-white text-black hover:bg-red-dark" target="_blank" >
+                            <div  class="w-1/4 p-2 pb-1"><img class="rounded" src="{{ item.snippet.thumbnails.medium.url }}" alt="{{ item.snippet.title | raw}}"></div>
+                            <div  class="w-3/4 pl-3 pt-3">
+                                <h2>{{ item.snippet.title | raw }}</h2>
+{#                                <p>{{ item.snippet.description }}</p>#}
+                                <p>{{ item.snippet.publishedAt | date("d F Y") }}</p>
+                            </div>
                         </a>
-
                     </li>
                 {% endfor %}
             {% else  %}
-                <li class="rounded overflow-hidden shadow-lg mb-8">
+                <li class="rounded overflow-hidden shadow-lg mb-8 p-8">
                 No video found.
                 </li>
             {% endif %}
         {% endfor %}
     </ul>
+    <div>Channel was created on {{ channelCreated | date("d F Y") }}</div>
 {% endblock %}
