@@ -26,7 +26,9 @@ class SearchController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
+//        if ($form->isSubmitted() && $form->isValid()) {
+
             $data = $form->getData();
             // ... perform some action, such as saving the data to the database
             try{
@@ -38,7 +40,7 @@ class SearchController extends AbstractController
 
                 $searchResults = $service->search->listSearch('id,snippet', array(
                     'q' => $data->getChannel(),
-                    'maxResults' => '10',
+                    'maxResults' => '12',
                     'type' => 'channel'
                 ));
 

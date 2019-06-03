@@ -16,16 +16,26 @@ class YSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('channel', TextType::class, array('label' => 'Channel Name', 'attr' => ['placeholder' => 'Channel Name', 'class' => 'p-4'] , 'label_attr'=> array('class'=>'font-bold rounded py-2 px-4')))
-            ->add('period',  ChoiceType::class, [
-                'choices'  => [
+            ->add('channel', TextType::class,
+                [
+                    'label' => 'Channel Name',
+                    'attr' => [
+                        'placeholder' => 'PewdiePie',
+                        'class' => 'p-2'
+                    ],
+                    'label_attr' => [
+                        'class' => 'pl-2'
+                    ]
+                ])
+            ->add('period', ChoiceType::class, [
+                'choices' => [
                     'Day' => 'day',
                     'Week' => 'week'
                 ],
-                'attr'=> ['class' => 'font-bold rounded py-2 px-4'],
-                'label_attr' => ['class' => 'p-4']
+                'attr' => ['class' => 'p-2 bg-white pr-12'],
+                'label_attr' => ['class' => 'pl-2']
             ])
-            ->add('search',SubmitType::class, array('label' => 'Search' , 'attr'=> array('class'=>'bg-red hover:bg-red-dark text-white font-bold py-2 px-4 rounded')));
+            ->add('search', SubmitType::class, array('label' => 'Search', 'attr' => array('class' => 'bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded')));
     }
 
     public function configureOptions(OptionsResolver $resolver)

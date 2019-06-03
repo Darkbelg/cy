@@ -1,26 +1,29 @@
 {% extends 'nostalgic/index.html.twig' %}
 {% block body %}
+    <div class="flex flex-col">
     <ul class="list-reset">
         {% for key,result in results %}
             {% if result.items  %}
                 {% for item in result.items %}
-                    <li class="rounded overflow-hidden shadow-lg mb-8">
-                        <a href="https://www.youtube.com/watch?v={{ item.id.videoId }}" class="flex no-underline hover:underline hover:text-white text-black hover:bg-red-dark" target="_blank" >
-                            <div  class="w-1/4 p-2 pb-1"><img class="rounded" src="{{ item.snippet.thumbnails.medium.url }}" alt="{{ item.snippet.title | raw}}"></div>
-                            <div  class="w-3/4 pl-3 pt-3">
+                    <li class="rounded overflow-hidden mb-8">
+                        <a href="https://www.youtube.com/watch?v={{ item.id.videoId }}" class="flex flex-col items-center md:items-start md:flex-row no-underline hover:underline hover:text-white text-black hover:bg-red-700 bg-white border-b-8 border-solid border-red-700" target="_blank" >
+                            <div  class="md:w-1/4 p-2"><img class="rounded" src="{{ item.snippet.thumbnails.medium.url }}" alt="{{ item.snippet.title | raw}}"></div>
+                            <div  class="md:w-3/4 pl-3 pt-3 pb-1 md:pb-0 self-start">
                                 <h2>{{ item.snippet.title | raw }}</h2>
-{#                                <p>{{ item.snippet.description }}</p>#}
-                                <p>{{ item.snippet.publishedAt | date("d F Y") }}</p>
+                                {# <p>{{ item.snippet.description }}</p>#}
+                                <p class="mb-2 ">{{ item.snippet.publishedAt | date("d F Y") }}</p>
                             </div>
                         </a>
                     </li>
                 {% endfor %}
             {% else  %}
-                <li class="rounded overflow-hidden shadow-lg mb-8 p-8">
-                No video found.
+                <li class="rounded overflow-hidden mb-8 p-8 bg-white border-b-8 border-solid border-red-700">
+                No video found for this {{ nostalgicDates[key]}} date.
                 </li>
             {% endif %}
         {% endfor %}
     </ul>
+        <div></div>
+    </div>
     <div>Channel was created on {{ channelCreated | date("d F Y") }}</div>
 {% endblock %}

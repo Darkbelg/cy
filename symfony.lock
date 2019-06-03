@@ -1,4 +1,7 @@
 {
+    "aws/aws-sdk-php": {
+        "version": "3.98.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -110,17 +113,32 @@
     "guzzlehttp/psr7": {
         "version": "1.5.2"
     },
+    "hollodotme/fast-cgi-client": {
+        "version": "v2.7.2"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "mnapoli/bref": {
+        "version": "0.3.9"
+    },
+    "mnapoli/silly": {
+        "version": "1.7.1"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
+    },
+    "mtdowling/jmespath.php": {
+        "version": "2.4.0"
     },
     "nikic/php-parser": {
         "version": "v4.1.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "php-di/invoker": {
+        "version": "2.0.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"

@@ -44,9 +44,16 @@ class NostalgicController extends AbstractController
                 $client->setUseBatch(true);
                 $batch = new Google_Http_Batch($client,false,null,"batch/youtube/v3/");
 
-
-                $nostalgicYears= [2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004];
                 $today = time();
+
+                $nostalgicYears = [];
+                for ($i = 2019;$i >= 2000;$i--){
+                    if(date_create($channelCreated)->format("Ymd") > $i . date("md",$today) ) {
+                        break;
+                    }
+                    $nostalgicYears[] = $i;
+                }
+
                 if($period == "day"){
                     $todayMorning = $today - 12*60*60;
                     $todayEvening = $today + 12*60*60;
@@ -64,9 +71,6 @@ class NostalgicController extends AbstractController
                 $searchResults = [];
 
                 foreach ($nostalgicDates as $year => $nostalgicDate){
-                    if($channelCreated > $year) {
-                        continue;
-                    }
                     $request = $searchService->listSearch('id,snippet', array(
                         'maxResults' => '7',
                         'type' => 'video',
@@ -77,9 +81,13 @@ class NostalgicController extends AbstractController
                     ));
                     $batch->add($request,$year);
                 }
+                foreach ($nostalgicDates as $year => $nostalgicDate){
+                    $nostalgicDates['response-'.$year] = date("d F",$today) . " ". $year;
+                }
                 $searchResults = $batch->execute();
+
                 return $this->render('nostalgic/videos.html.twig', array(
-                    'results' => $searchResults, 'channelCreated' =>$channelCreated
+                    'results' => $searchResults, 'channelCreated' =>$channelCreated, 'nostalgicDates' => $nostalgicDates
                 ));
 
             }catch(Google_Exception $ge){
