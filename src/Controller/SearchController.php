@@ -31,27 +31,52 @@ class SearchController extends AbstractController
 
             $data = $form->getData();
             // ... perform some action, such as saving the data to the database
-            try{
+            try {
                 $client = new Google_Client();
                 $client->setApplicationName("yfilter");
                 $client->setDeveloperKey($_ENV['YOUTUBE_APIKEY']);
 
                 $service = new Google_Service_YouTube($client);
 
-                $searchResults = $service->search->listSearch('id,snippet', array(
-                    'q' => $data->getChannel(),
-                    'maxResults' => '12',
-                    'type' => 'channel'
-                ));
+                if ($form->get('feeling_lucky')->isClicked()) {
 
-                return $this->render('nostalgic/channels.html.twig', array(
-                    'results' => $searchResults,
-                    'period' => $data->getPeriod()
-                ));
+                    $searchResult = $service->search->listSearch('id,snippet', array(
+                        'q' => $data->getChannel(),
+                        'maxResults' => '1',
+                        'type' => 'channel'
+                    ));
 
-            }catch(Google_Exception $ge){
+                    if(!isset($searchResult[0]['id'])){
+                        $this->throwError('Sorry, we could not find any channels based on your search.');
+                        return $this->redirectToRoute('homepage');
+                    }
+
+                    $userId = $searchResult['items'][0]['id']['channelId'];
+                    return $this->redirect('/nostalgic/channel/' . $userId . '/period/' . $data->getPeriod());
+                } else {
+
+                    $searchResults = $service->search->listSearch('id,snippet', array(
+                        'q' => $data->getChannel(),
+                        'maxResults' => '12',
+                        'type' => 'channel'
+                    ));
+
+                    if(!isset($searchResults[0]['id'])){
+                        $this->throwError('Sorry, we could not find any channels based on your search.');
+                        return $this->redirectToRoute('homepage');
+
+                    }
+
+                    return $this->render('nostalgic/channels.html.twig', array(
+                        'results' => $searchResults,
+                        'period' => $data->getPeriod()
+                    ));
+
+                }
+
+            } catch (Google_Exception $ge) {
                 echo $ge;
-            }catch(Google_Service_Exception $gse){
+            } catch (Google_Service_Exception $gse) {
                 echo $gse;
             }
 
@@ -61,5 +86,11 @@ class SearchController extends AbstractController
             'form' => $form->createView(),
         ));
 
+    }
+    private function throwError($string){
+        $this->addFlash(
+            'error',
+            $string
+        );
     }
 }

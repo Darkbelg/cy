@@ -35,7 +35,8 @@ class YSearchType extends AbstractType
                 'attr' => ['class' => 'p-2 bg-white pr-12'],
                 'label_attr' => ['class' => 'pl-2']
             ])
-            ->add('search', SubmitType::class, array('label' => 'Search', 'attr' => array('class' => 'bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded')));
+            ->add('search', SubmitType::class, array('label' => 'Search Channel', 'attr' => array('class' => 'bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded mb-2')))
+            ->add('feeling_lucky', SubmitType::class, array('label' => 'I\'m Feeling Lucky', 'attr' => array('class' => 'bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded')));
     }
 
     public function configureOptions(OptionsResolver $resolver)
