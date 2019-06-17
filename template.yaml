@@ -64,6 +64,8 @@ Resources:
         Enabled: true
         # Cheapest option by default (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DistributionConfig.html)
         PriceClass: PriceClass_100
+        HttpVersion: http2
+        # Enable http2 transfer for better performance
         # Origins are where CloudFront fetches content
         Origins:
           # The website (AWS Lambda)
@@ -115,6 +117,8 @@ Resources:
               ErrorCachingMinTTL: 0
           -   ErrorCode: 504
               ErrorCachingMinTTL: 0
+          -   ErrorCode: 404
+              ErrorCachingMinTTL: 0
         # Custom domain name
         Aliases:
           - www.nostalgicchannels.com # e.g. example.com
@@ -123,6 +127,7 @@ Resources:
           AcmCertificateArn: arn:aws:acm:us-east-1:737778013917:certificate/08584dc8-6641-4900-b0b2-70f8584bfda6
           # See https://docs.aws.amazon.com/fr_fr/cloudfront/latest/APIReference/API_ViewerCertificate.html
           SslSupportMethod: 'sni-only'
+          MinimumProtocolVersion: TLSv1.1_2016
 
   Console:
     Type: AWS::Serverless::Function

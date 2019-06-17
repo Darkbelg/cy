@@ -12,6 +12,7 @@ use Google_Client;
 use Google_Service_YouTube;
 use Google_Exception;
 use Google_Service_Exception;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class SearchController extends AbstractController
 {
@@ -47,7 +48,7 @@ class SearchController extends AbstractController
                     ));
 
                     if(!isset($searchResult[0]['id'])){
-                        $this->throwError('Sorry, we could not find any channels based on your search.');
+                        setCookie('error','Sorry, we could not find any channels based on your search.');
                         return $this->redirectToRoute('homepage');
                     }
 

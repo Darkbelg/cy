@@ -34,12 +34,12 @@ class NostalgicController extends AbstractController
 
                 $nostalgicDates = [];
 
-                $channelCreated = $service->channels->listChannels('snippet', array(
+                $channelData = $service->channels->listChannels('snippet,statistics,brandingSettings', array(
                     'id' => $channel,
                     'maxResults' => '1'
                 ));
 
-                $channelCreated = $channelCreated['items'][0]['snippet']['publishedAt'];
+                $channelCreated = $channelData['items'][0]['snippet']['publishedAt'];
 
                 $client->setUseBatch(true);
                 $batch = new Google_Http_Batch($client,false,null,"batch/youtube/v3/");
@@ -86,8 +86,21 @@ class NostalgicController extends AbstractController
                 }
                 $searchResults = $batch->execute();
 
+                $client->setUseBatch(false);
+
+                $videoIds['id'] = "";
+
+
+                foreach ($searchResults as $searchResult){
+                    foreach ($searchResult["items"] as  $item){
+                        $videoIds["id"] .= $item["id"]["videoId"] . ',';
+                    }
+                }
+
+                $searchResults = $service->videos->listVideos('statistics,contentDetails,snippet,id', $videoIds);
+
                 return $this->render('nostalgic/videos.html.twig', array(
-                    'results' => $searchResults, 'channelCreated' =>$channelCreated, 'nostalgicDates' => $nostalgicDates
+                    'results' => $searchResults, 'channelCreated' =>$channelCreated,'channel' => $channelData, 'nostalgicDates' => $nostalgicDates
                 ));
 
             }catch(Google_Exception $ge){

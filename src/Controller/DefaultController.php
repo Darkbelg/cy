@@ -18,12 +18,21 @@ class DefaultController extends AbstractController
     {
         $searchNostalgic = new SearchNostalgic();
 
-        $form = $this->createForm(YSearchType::class,$searchNostalgic, array(
+        $form = $this->createForm(YSearchType::class, $searchNostalgic, array(
             'action' => '/search'
         ));
 
+        if (isset($_COOKIE["error"])) {
+            $error = $_COOKIE["error"];
+            unset($_COOKIE["error"]);
+            setcookie('error', '', time() - 3600, '/');
+            return $this->render('nostalgic/form/nostalgic.html.twig', array(
+                'form' => $form->createView(),'error' => $error
+            ));
+        }
+
         return $this->render('nostalgic/form/nostalgic.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 }

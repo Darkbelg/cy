@@ -20,7 +20,7 @@ class YSearchType extends AbstractType
                 [
                     'label' => 'Channel Name',
                     'attr' => [
-                        'placeholder' => 'PewdiePie',
+                        'placeholder' => 'Channel name',
                         'class' => 'p-2'
                     ],
                     'label_attr' => [

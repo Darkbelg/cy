@@ -10,6 +10,7 @@
     <title>{% block title %}YSearch{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="/assets/tailwind.min.css">
+    <script src="/assets/main.js"></script>
     <!-- Hotjar Tracking Code for www.nostalgicchannels.com -->
     <script>
         (function (h, o, t, j, a, r) {
@@ -23,6 +24,13 @@
             r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
             a.appendChild(r);
         })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-4020139907928937",
+            enable_page_level_ads: true
+        });
     </script>
 </head>
 <body class="flex flex-col h-full bg-gray-200">
@@ -40,17 +48,15 @@
     </div>
 </nav>
 <main class="container mx-auto py-5 flex-1">
-
-    {% for message in app.flashes('error') %}
-        <h1>error</h1>
+    {% if error is defined %}
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
-            <strong class="font-bold">{{ message }}</strong>
+            <strong class="font-bold">{{ error }}</strong>
         </div>
-    {% endfor %}
+    {% endif %}
 
     {% block body %}
-
     {% endblock %}
+    <p>Find videos from channels of this day but one or more years ago.</p>
 </main>
 {% block javascripts %}{% endblock %}
 <footer class="w-full text-center border-t border-grey p-4 pin-b">
