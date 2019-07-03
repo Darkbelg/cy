@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\SearchNostalgic;
+use App\Form\YSearchChannel;
 use App\Form\YSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,21 +19,26 @@ class DefaultController extends AbstractController
     {
         $searchNostalgic = new SearchNostalgic();
 
-        $form = $this->createForm(YSearchType::class, $searchNostalgic, array(
-            'action' => '/search'
+        $formNostalgic = $this->createForm(YSearchType::class, $searchNostalgic, array(
+            'action' => '/search/nostalgic'
         ));
 
-        if (isset($_COOKIE["error"])) {
+        $formYearInReview = $this->createForm(YSearchChannel::class, $searchNostalgic, array(
+            'action' => '/search/yearinreview'
+        ));
+
+/*        if (isset($_COOKIE["error"])) {
             $error = $_COOKIE["error"];
             unset($_COOKIE["error"]);
             setcookie('error', '', time() - 3600, '/');
             return $this->render('nostalgic/form/nostalgic.html.twig', array(
                 'form' => $form->createView(),'error' => $error
             ));
-        }
+        }*/
 
         return $this->render('nostalgic/form/nostalgic.html.twig', array(
-            'form' => $form->createView()
+            'formNostalgic' => $formNostalgic->createView(),
+            'formYearInReview' => $formYearInReview->createView()
         ));
     }
 }

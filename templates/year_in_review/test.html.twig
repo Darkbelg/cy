@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+{% for result in results %}
+{#    {{ dump(result) }}#}
+    <h1>{{ result.snippet.title | raw }}</h1>
+    <p>{{ result.snippet.publishedAt }}</p>
+{#    {{ dump(result) }}#}
+{#    <img src="{{ result.snippet.thumbnails.high.url }}" alt="">#}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ result.id.videoId }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% endfor %}
+{#{{ dump(results) }}#}
+
+<a href="/yearinreview/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw/period/2018/page/{{ results.prevPageToken }}">Previous page</a>
+<a href="/yearinreview/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw/period/2018/page/{{ results.nextPageToken }}">Next page</a>
+
+<script>
+    window.onload = function (){
+        document.querySelectorAll('.results a').forEach((el) => {
+            el.addEventListener('click',function () {
+                event.preventDefault();
+                videoId = this.getAttribute("href").split('?v=')[1];
+                // console.log(videoId);
+                // console.log(this.offsetWidth);
+                videoWidth = this.offsetWidth;
+                videoHeight = (this.offsetWidth/16) *9;
+                this.innerHTML = '<iframe width="' + videoWidth + 'px" height="'+ videoHeight +'px" src="https://www.youtube.com/embed/' + videoId + '?&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            });
+            // el.addEventListener("resize", function(){
+            //     console.log(this.querySelector('iframe'));
+            // })
+
+        })
+    };
+</script>
+</body>
+</html>

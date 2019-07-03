@@ -29,12 +29,17 @@ Resources:
         Search:
           Type: Api
           Properties:
-            Path: /search
+            Path: /search/{app}
             Method: POST
         NostalgicSearch:
           Type: Api
           Properties:
             Path: /nostalgic/channel/{slug}/period/{period}
+            Method: GET
+        YearInReview:
+          Type: Api
+          Properties:
+            Path: /yearinreview/channel/{slug}/period/{period}
             Method: GET
 
   # The S3 bucket that stores the assets

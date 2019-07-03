@@ -2,30 +2,33 @@
 
 {% block body %}
     <div>
-            {{ form_start(form) }}
+            {{ form_start(formNostalgic) }}
 
         <div class="w-full max-w-sm">
             <div class="flex flex-row mb-3">
                 <div class="w-1/3 self-center">
-                {{ form_label(form.channel) }}</div>
+                {{ form_label(formNostalgic.channel) }}</div>
                 <div class="w-2/3 ml-2">
-                {{ form_widget(form.channel) }}</div>
+                {{ form_widget(formNostalgic.channel) }}</div>
             </div>
             <div class="flex flex-row mb-3">
                 <div class="w-1/3 self-center">
-                {{ form_label(form.period) }}</div>
+                {{ form_label(formNostalgic.period) }}</div>
                 <div class="w-2/3 ml-2">
-                {{ form_widget(form.period) }}</div>
+                {{ form_widget(formNostalgic.period) }}</div>
             </div>
             <div class="flex flex-row mb-3">
                 <div class="w-1/3"></div>
                 <div class="w-2/3 ml-2">
-                {{ form_widget(form.search) }}
-                {{ form_widget(form.feeling_lucky) }}
+                {{ form_widget(formNostalgic.search) }}
+                {{ form_widget(formNostalgic.feeling_lucky) }}
                 </div>
             </div>
         </div>
 
-            {{ form_end(form) }}
+            {{ form_end(formNostalgic) }}
     </div>
+
+    {% include 'year_in_review/form/yearinreview.html.twig' %}
+
 {% endblock %}

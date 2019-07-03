@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\SearchNostalgic;
+use App\Form\YSearchChannel;
 use App\Form\YSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,16 +15,26 @@ use Google_Exception;
 use Google_Service_Exception;
 use Symfony\Component\HttpFoundation\Cookie;
 
-class SearchController extends AbstractController
+class SearchChannelsController extends AbstractController
 {
     /**
-     * @Route("/search", name="search")
+     * @Route("/search/{appName}", name="search")
      */
-    public function search(Request $request)
+    public function search(Request $request,$appName)
     {
+
+        $this->addFlash(
+            'notice',
+            'Your changes were saved!'
+        );
         $search = new SearchNostalgic();
 
+        if ($appName == 'nostalgic'){
         $form = $this->createForm(YSearchType::class, $search);
+        } elseif ($appName == 'yearinreview'){
+            $form = $this->createForm(YSearchChannel::class, $search);
+
+        }
 
         $form->handleRequest($request);
 
@@ -31,6 +42,11 @@ class SearchController extends AbstractController
 //        if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
+            if ($data->getPeriod()){
+                $period = $data->getPeriod();
+            } else {
+                $period = "2019";
+            }
             // ... perform some action, such as saving the data to the database
             try {
                 $client = new Google_Client();
@@ -53,7 +69,7 @@ class SearchController extends AbstractController
                     }
 
                     $userId = $searchResult['items'][0]['id']['channelId'];
-                    return $this->redirect('/nostalgic/channel/' . $userId . '/period/' . $data->getPeriod());
+                    return $this->redirect('/'. $appName .'/channel/' . $userId . '/period/' . $period);
                 } else {
 
                     $searchResults = $service->search->listSearch('id,snippet', array(
@@ -70,7 +86,8 @@ class SearchController extends AbstractController
 
                     return $this->render('nostalgic/channels.html.twig', array(
                         'results' => $searchResults,
-                        'period' => $data->getPeriod()
+                        'period' => $period,
+                        'appName' => $appName
                     ));
 
                 }

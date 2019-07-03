@@ -90,7 +90,6 @@ class NostalgicController extends AbstractController
 
                 $videoIds['id'] = "";
 
-
                 foreach ($searchResults as $searchResult){
                     foreach ($searchResult["items"] as  $item){
                         $videoIds["id"] .= $item["id"]["videoId"] . ',';
