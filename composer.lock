@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df0d67ba91c8e3b08dcec2dad19e96a5",
+    "content-hash": "eda9dd8e00c1895e2132126c34b4d4c9",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.103.0",
+            "version": "3.107.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "77ed156cc323efcc7912941440c622d5f12ffbce"
+                "reference": "7a89f7cac726990d563627c542cd030a3203304d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/77ed156cc323efcc7912941440c622d5f12ffbce",
-                "reference": "77ed156cc323efcc7912941440c622d5f12ffbce",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7a89f7cac726990d563627c542cd030a3203304d",
+                "reference": "7a89f7cac726990d563627c542cd030a3203304d",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,66 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-06-27T18:15:25+00:00"
+            "time": "2019-07-17T18:11:12+00:00"
+        },
+        {
+            "name": "bref/bref",
+            "version": "0.3.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brefphp/bref.git",
+                "reference": "5987c3a9a1b3127dc4d88b541172fcf481da880b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brefphp/bref/zipball/5987c3a9a1b3127dc4d88b541172fcf481da880b",
+                "reference": "5987c3a9a1b3127dc4d88b541172fcf481da880b",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "^3.44",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "hollodotme/fast-cgi-client": "^2.7",
+                "mnapoli/silly": "^1.7",
+                "php": "^7.2.0",
+                "psr/http-message": "^1.0",
+                "symfony/filesystem": "^3.1|^4.0",
+                "symfony/process": "^3.3|^4.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^5.0",
+                "guzzlehttp/guzzle": "^6.3",
+                "phpstan/phpstan": "^0.11.5",
+                "phpunit/phpunit": "^6.5",
+                "zendframework/zend-diactoros": "^1.6|^2.0"
+            },
+            "bin": [
+                "bref"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Bref\\": "src"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Bref is a framework to write and deploy serverless PHP applications on AWS Lambda.",
+            "homepage": "https://bref.sh",
+            "keywords": [
+                "aws",
+                "bref",
+                "faas",
+                "lambda",
+                "serverless"
+            ],
+            "time": "2019-05-05T09:53:14+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1710,33 +1769,37 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.5.2",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115"
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
                 "psr/http-message": "~1.0",
-                "ralouphie/getallheaders": "^2.0.5"
+                "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
             },
             "provide": {
                 "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
+                "ext-zlib": "*",
                 "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+            },
+            "suggest": {
+                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "1.6-dev"
                 }
             },
             "autoload": {
@@ -1773,7 +1836,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-12-04T20:46:45+00:00"
+            "time": "2019-07-01T23:21:34+00:00"
         },
         {
             "name": "hollodotme/fast-cgi-client",
@@ -1886,66 +1949,6 @@
                 "sql"
             ],
             "time": "2014-01-12T16:20:24+00:00"
-        },
-        {
-            "name": "mnapoli/bref",
-            "version": "0.3.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mnapoli/bref.git",
-                "reference": "5987c3a9a1b3127dc4d88b541172fcf481da880b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mnapoli/bref/zipball/5987c3a9a1b3127dc4d88b541172fcf481da880b",
-                "reference": "5987c3a9a1b3127dc4d88b541172fcf481da880b",
-                "shasum": ""
-            },
-            "require": {
-                "aws/aws-sdk-php": "^3.44",
-                "ext-curl": "*",
-                "ext-json": "*",
-                "hollodotme/fast-cgi-client": "^2.7",
-                "mnapoli/silly": "^1.7",
-                "php": "^7.2.0",
-                "psr/http-message": "^1.0",
-                "symfony/filesystem": "^3.1|^4.0",
-                "symfony/process": "^3.3|^4.0"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "^5.0",
-                "guzzlehttp/guzzle": "^6.3",
-                "phpstan/phpstan": "^0.11.5",
-                "phpunit/phpunit": "^6.5",
-                "zendframework/zend-diactoros": "^1.6|^2.0"
-            },
-            "bin": [
-                "bref"
-            ],
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "Bref\\": "src"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Bref is a framework to write and deploy serverless PHP applications on AWS Lambda.",
-            "homepage": "https://bref.sh",
-            "keywords": [
-                "aws",
-                "bref",
-                "faas",
-                "lambda",
-                "serverless"
-            ],
-            "abandoned": "bref/bref",
-            "time": "2019-05-05T09:53:14+00:00"
         },
         {
             "name": "mnapoli/silly",
@@ -2443,16 +2446,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.20",
+            "version": "2.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d6819a55b05e123db1e881d8b230d57f912126be"
+                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d6819a55b05e123db1e881d8b230d57f912126be",
-                "reference": "d6819a55b05e123db1e881d8b230d57f912126be",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/9f1287e68b3f283339a9f98f67515dd619e5bf9d",
+                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d",
                 "shasum": ""
             },
             "require": {
@@ -2531,7 +2534,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-06-23T16:33:11+00:00"
+            "time": "2019-07-12T12:53:49+00:00"
         },
         {
             "name": "psr/cache",
@@ -2824,24 +2827,24 @@
         },
         {
             "name": "ralouphie/getallheaders",
-            "version": "2.0.5",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ralouphie/getallheaders.git",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+                "reference": "120b605dfeb996808c31b6477290a714d356e822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7.0",
-                "satooshi/php-coveralls": ">=1.0"
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5 || ^6.5"
             },
             "type": "library",
             "autoload": {
@@ -2860,7 +2863,7 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "time": "2016-02-11T07:05:27+00:00"
+            "time": "2019-03-08T08:55:37+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3855,16 +3858,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.4.0",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "56981bc96c3bfd52e55e0255be87f674e5baca33"
+                "reference": "4b5d25a5538e2dc37ff84645fe7498a9a04947b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/56981bc96c3bfd52e55e0255be87f674e5baca33",
-                "reference": "56981bc96c3bfd52e55e0255be87f674e5baca33",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/4b5d25a5538e2dc37ff84645fe7498a9a04947b3",
+                "reference": "4b5d25a5538e2dc37ff84645fe7498a9a04947b3",
                 "shasum": ""
             },
             "require": {
@@ -3900,7 +3903,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2019-06-27T13:49:48+00:00"
+            "time": "2019-07-12T06:29:25+00:00"
         },
         {
             "name": "symfony/form",
@@ -6766,16 +6769,16 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.11.6",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "d262c2cace4d9bca99137a84f6fc6ba909a17e02"
+                "reference": "201d0e050dca336c44f93657ce1f34f3b3868432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/d262c2cace4d9bca99137a84f6fc6ba909a17e02",
-                "reference": "d262c2cace4d9bca99137a84f6fc6ba909a17e02",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/201d0e050dca336c44f93657ce1f34f3b3868432",
+                "reference": "201d0e050dca336c44f93657ce1f34f3b3868432",
                 "shasum": ""
             },
             "require": {
@@ -6791,12 +6794,14 @@
                 "symfony/http-kernel": "^3.4|^4.0"
             },
             "require-dev": {
-                "allocine/twigcs": "^3.0",
                 "doctrine/doctrine-bundle": "^1.8",
                 "doctrine/orm": "^2.3",
                 "friendsofphp/php-cs-fixer": "^2.8",
-                "symfony/phpunit-bridge": "^3.4|^4.0",
+                "friendsoftwig/twigcs": "^3.1.2",
+                "symfony/http-client": "^4.3",
+                "symfony/phpunit-bridge": "^3.4.19|^4.0",
                 "symfony/process": "^3.4|^4.0",
+                "symfony/security-core": "^3.4|^4.0",
                 "symfony/yaml": "^3.4|^4.0"
             },
             "type": "symfony-bundle",
@@ -6828,7 +6833,7 @@
                 "scaffold",
                 "scaffolding"
             ],
-            "time": "2019-04-19T17:26:45+00:00"
+            "time": "2019-07-09T22:19:18+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
