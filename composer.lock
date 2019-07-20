@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "eda9dd8e00c1895e2132126c34b4d4c9",
+    "content-hash": "e180c29665c019ebf5219d8d276c2e0b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -91,16 +91,16 @@
         },
         {
             "name": "bref/bref",
-            "version": "0.3.9",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brefphp/bref.git",
-                "reference": "5987c3a9a1b3127dc4d88b541172fcf481da880b"
+                "reference": "5f2d6263353ae06d721de3bffb63f2c9b4ed566e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brefphp/bref/zipball/5987c3a9a1b3127dc4d88b541172fcf481da880b",
-                "reference": "5987c3a9a1b3127dc4d88b541172fcf481da880b",
+                "url": "https://api.github.com/repos/brefphp/bref/zipball/5f2d6263353ae06d721de3bffb63f2c9b4ed566e",
+                "reference": "5f2d6263353ae06d721de3bffb63f2c9b4ed566e",
                 "shasum": ""
             },
             "require": {
@@ -146,7 +146,7 @@
                 "lambda",
                 "serverless"
             ],
-            "time": "2019-05-05T09:53:14+00:00"
+            "time": "2019-07-17T11:06:43+00:00"
         },
         {
             "name": "doctrine/annotations",
