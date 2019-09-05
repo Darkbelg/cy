@@ -90,10 +90,10 @@ class YearInReviewController extends AbstractController
                 'results' => $searchResults,'channel' => $channelData,'period' => $period,'pageToken' => $PageToken, 'years' =>  $years,'current_url' => $_SERVER["REQUEST_URI"]
             ));
 
-        } catch (Google_Exception $ge) {
+        } catch (Google_Service_Exception $ge) {
             echo $ge;
         } catch
-        (Google_Service_Exception $gse) {
+        ( Google_Exception $gse) {
             echo $gse;
         }
     }

@@ -126,10 +126,11 @@ Resources:
               ErrorCachingMinTTL: 0
         # Custom domain name
         Aliases:
-          - www.nostalgicchannels.com # e.g. example.com
+          - www.nostalgicchannels.com
+          - www.yearinreviewchannels.com
         ViewerCertificate:
           # ARN of the certificate created in ACM
-          AcmCertificateArn: arn:aws:acm:us-east-1:737778013917:certificate/08584dc8-6641-4900-b0b2-70f8584bfda6
+          AcmCertificateArn: arn:aws:acm:us-east-1:737778013917:certificate/e82126b3-122d-44d0-bea1-2046d6c8f797
           # See https://docs.aws.amazon.com/fr_fr/cloudfront/latest/APIReference/API_ViewerCertificate.html
           SslSupportMethod: 'sni-only'
           MinimumProtocolVersion: TLSv1.1_2016

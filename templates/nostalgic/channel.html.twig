@@ -24,7 +24,7 @@
                     <div class="w-2/3 text-right"><span class="font-bold">{{ channel.items.0.statistics.viewCount | number_format(0, ',', ' ') }}</span></div>
                 </div>
             </div>
-            <p class="text-left mt-4">{{ channel.items.0.snippet.description }}</p>
+            <p class="text-left mt-4">{{ channel.items.0.snippet.description|nl2br }}</p>
         </div>
     </div>
 {% endblock channel %}

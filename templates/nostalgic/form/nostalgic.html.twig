@@ -1,6 +1,7 @@
 {% extends 'nostalgic/index.html.twig' %}
 
 {% block body %}
+    {% if formNostalgic is defined %}
     <div>
             {{ form_start(formNostalgic) }}
 
@@ -25,10 +26,12 @@
                 </div>
             </div>
         </div>
-
             {{ form_end(formNostalgic) }}
     </div>
+    {% endif %}
 
+    {% if formYearInReview is defined %}
     {% include 'year_in_review/form/yearinreview.html.twig' %}
+    {% endif %}
 
 {% endblock %}

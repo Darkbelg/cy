@@ -65,7 +65,7 @@ class SearchChannelsController extends AbstractController
 
                     if(!isset($searchResult[0]['id'])){
                         setCookie('error','Sorry, we could not find any channels based on your search.');
-                        return $this->redirectToRoute('homepage');
+                        return $this->redirectToRoute('homepage_year_in_review_channnels');
                     }
 
                     $userId = $searchResult['items'][0]['id']['channelId'];
@@ -80,7 +80,7 @@ class SearchChannelsController extends AbstractController
 
                     if(!isset($searchResults[0]['id'])){
                         $this->throwError('Sorry, we could not find any channels based on your search.');
-                        return $this->redirectToRoute('homepage');
+                        return $this->redirectToRoute('homepage_year_in_review_channnels');
 
                     }
 

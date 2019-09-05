@@ -13,31 +13,43 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage_nostalgic_channels", host="www.nostalgicchannels.com")
      */
-    public function index()
+    public function nostalgicChannelsHomepage()
     {
+/*        echo "nostalgic";
+        echo "<pre>";
+        var_dump($_SERVER);
+        echo "</pre>";*/
+
         $searchNostalgic = new SearchNostalgic();
 
         $formNostalgic = $this->createForm(YSearchType::class, $searchNostalgic, array(
             'action' => '/search/nostalgic'
         ));
 
+        return $this->render('nostalgic/form/nostalgic.html.twig', array(
+            'formNostalgic' => $formNostalgic->createView()
+        ));
+    }
+
+    /**
+     * @Route("/", name="homepage_year_in_review_channnels")
+     */
+    public function yearInReviewChannelsHomepage()
+    {
+/*        echo "yearinreview";
+    echo "<pre>";
+    var_dump($_SERVER);
+    echo "</pre>";*/
+
+        $searchNostalgic = new SearchNostalgic();
+
         $formYearInReview = $this->createForm(YSearchChannel::class, $searchNostalgic, array(
             'action' => '/search/yearinreview'
         ));
 
-/*        if (isset($_COOKIE["error"])) {
-            $error = $_COOKIE["error"];
-            unset($_COOKIE["error"]);
-            setcookie('error', '', time() - 3600, '/');
-            return $this->render('nostalgic/form/nostalgic.html.twig', array(
-                'form' => $form->createView(),'error' => $error
-            ));
-        }*/
-
         return $this->render('nostalgic/form/nostalgic.html.twig', array(
-            'formNostalgic' => $formNostalgic->createView(),
             'formYearInReview' => $formYearInReview->createView()
         ));
     }
