@@ -12,15 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage_nostalgic_channels", host="www.nostalgicchannels.com")
-     */
+
     public function nostalgicChannelsHomepage()
     {
-/*        echo "nostalgic";
-        echo "<pre>";
-        var_dump($_SERVER);
-        echo "</pre>";*/
 
         $searchNostalgic = new SearchNostalgic();
 
@@ -33,15 +27,8 @@ class DefaultController extends AbstractController
         ));
     }
 
-    /**
-     * @Route("/", name="homepage_year_in_review_channnels")
-     */
     public function yearInReviewChannelsHomepage()
     {
-/*        echo "yearinreview";
-    echo "<pre>";
-    var_dump($_SERVER);
-    echo "</pre>";*/
 
         $searchNostalgic = new SearchNostalgic();
 
@@ -52,5 +39,28 @@ class DefaultController extends AbstractController
         return $this->render('nostalgic/form/nostalgic.html.twig', array(
             'formYearInReview' => $formYearInReview->createView()
         ));
+    }
+
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function hostController()
+    {
+        $domain = $_COOKIE['domain'];
+        switch ($domain){
+            case 'www.nostalgicchannels.com':
+                return $this->nostalgicChannelsHomepage();
+            break;
+            case 'www.yearinreviewchannels.com':
+                return $this->yearInReviewChannelsHomepage();
+            default:
+                $domainScript = <<< script
+<script>
+    document.cookie = "domain=" + window.location.hostname;
+    location.reload();
+</script>
+script;
+            echo $domainScript;
+        }
     }
 }
