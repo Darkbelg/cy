@@ -35,7 +35,8 @@ class YearInReviewController extends AbstractController
        return $this->searchYearInReview( $channel,$period,$page);
     }
 
-    private function searchYearInReview( $channel,$period,$page = null){
+    private function searchYearInReview( $channel,$period,$page = null): ?\Symfony\Component\HttpFoundation\Response
+    {
 
         // ... perform some action, such as saving the data to the database
         try {
@@ -67,7 +68,7 @@ class YearInReviewController extends AbstractController
                 'maxResults' => '50',
                 'type' => 'video',
                 'channelId' => $channel,
-                'order' => 'date',
+                'order' => 'viewCount',
                 'publishedAfter' =>  $beginYear->format("Y-m-d\TH:i:s\Z"),
                 'publishedBefore' => $endYear->format("Y-m-d\TH:i:s\Z"),
                 'pageToken' => $page

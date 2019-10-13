@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html class="h-full">
 <head>
+    <script>
+        document.cookie = "domain=" + window.location.hostname;
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
-    <title>{% block title %}YSearch{% endblock %}</title>
+    <title>{% block title %}YSearch{% endblock %} | {% block subtitle %}{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="/assets/tailwind.min.css">
     <script src="/assets/main.js"></script>
@@ -55,14 +58,10 @@
     {% endif %}
     {% block body %}
     {% endblock %}
-    <p>Find videos from channels of this day but one or more years ago.</p>
 </main>
 {% block javascripts %}{% endblock %}
 <footer class="w-full text-center border-t border-grey p-4 pin-b">
     <p>For support:<a href="https://twitter.com/darkbelg">@Darkbelg</a></p>
 </footer>
-<script>
-    document.cookie = "domain=" + window.location.hostname;
-</script>
 </body>
 </html>

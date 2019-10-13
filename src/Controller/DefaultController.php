@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends AbstractController
 {
 
-    public function nostalgicChannelsHomepage()
+    public function nostalgicChannelsHomepage(): \Symfony\Component\HttpFoundation\Response
     {
 
         $searchNostalgic = new SearchNostalgic();
@@ -27,7 +27,7 @@ class DefaultController extends AbstractController
         ));
     }
 
-    public function yearInReviewChannelsHomepage()
+    public function yearInReviewChannelsHomepage(): \Symfony\Component\HttpFoundation\Response
     {
 
         $searchNostalgic = new SearchNostalgic();
@@ -36,7 +36,7 @@ class DefaultController extends AbstractController
             'action' => '/search/yearinreview'
         ));
 
-        return $this->render('nostalgic/form/nostalgic.html.twig', array(
+        return $this->render('year_in_review/form/yearinreview.html.twig', array(
             'formYearInReview' => $formYearInReview->createView()
         ));
     }
