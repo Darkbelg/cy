@@ -126,3 +126,8 @@ resources:
             # See https://docs.aws.amazon.com/fr_fr/cloudfront/latest/APIReference/API_ViewerCertificate.html
             SslSupportMethod: 'sni-only'
             MinimumProtocolVersion: TLSv1.1_2016
+package:
+  exclude:
+    - 'public/assets/**'
+    - 'node_modules/**'
+    - 'var/**'

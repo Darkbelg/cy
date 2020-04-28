@@ -15,7 +15,7 @@ use Google_Service_Exception;
 class NostalgicController extends AbstractController
 {
 
-    const HALF_WEEK = 3.5*24*60*60;
+    const HALF_WEEK = 302400;
     const HALF_DAY = 12*60*60;
 
     /**
@@ -54,12 +54,12 @@ class NostalgicController extends AbstractController
                     $nostalgicYears[] = $i;
                 }
 
-                if($period == "day"){
+                if($period === 'day'){
                     $todayMorning = $today - 12*60*60;
                     $todayEvening = $today + 12*60*60;
                 }else{
-                    $todayMorning = $today - 3.5*24*60*60;
-                    $todayEvening = $today + 3.5*24*60*60;
+                    $todayMorning = $today - 302400;
+                    $todayEvening = $today + 302400;
                 }
 
                 foreach ($nostalgicYears as $year ){

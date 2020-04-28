@@ -30,7 +30,7 @@ class YSearchType extends AbstractType
             ->add('period', ChoiceType::class, [
                 'choices' => [
                     'Day' => 'day',
-                    'Week' => 'week'
+//                    'Week' => 'week'
                 ],
                 'attr' => ['class' => 'p-2 bg-white pr-12'],
                 'label_attr' => ['class' => 'pl-2']
