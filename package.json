@@ -1,0 +1,18 @@
+{
+  "name": "ysearch",
+  "version": "1.0.0",
+  "description": "npm to manage ysearch",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "serverless-pseudo-parameters": "^2.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
